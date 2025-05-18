@@ -1,6 +1,3 @@
-﻿---
-
-````markdown
 # LightMediator.EventBus.SignalR
 
 [![NuGet](https://img.shields.io/nuget/v/LightMediator.EventBus.SignalR.svg)](https://www.nuget.org/packages/LightMediator.EventBus.SignalR)

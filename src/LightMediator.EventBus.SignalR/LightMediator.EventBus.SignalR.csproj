@@ -4,19 +4,20 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.5.1.5</Version>
+		<Version>0.5.1.6</Version>
 		<Authors>Mahmood Malekloo</Authors>
 		<Description>
 			Signalr messaging service extension for lightmediator event bus
 		</Description>
 		<PackageTags>mediator;lightweight;signalr;eventbus;event-driven;windows-services;decoupled;microservices</PackageTags>
-		<PackageProjectUrl>https://github.com/MahmoodMalekloo/LightMediator</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/MahmoodMalekloo/LightMediator</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/MahmoodMalekloo/LightMediator.EventBus.SignalR</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/MahmoodMalekloo/LightMediator.EventBus.SignalR</RepositoryUrl>
 		<LicenseUrl>https://opensource.org/licenses/MIT</LicenseUrl>
 		<Icon>icon.png</Icon>
 		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
 		<PackageReleaseNotes>
 			- Improve signalr connection and infinit reconnecting
+			- correct project urls
 		</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<License>MIT</License>

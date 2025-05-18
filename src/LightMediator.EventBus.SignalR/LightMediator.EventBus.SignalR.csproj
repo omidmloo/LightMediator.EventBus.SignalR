@@ -4,7 +4,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.5.1.4</Version>
+		<Version>0.5.1.5</Version>
 		<Authors>Mahmood Malekloo</Authors>
 		<Description>
 			Signalr messaging service extension for lightmediator event bus
@@ -16,7 +16,7 @@
 		<Icon>icon.png</Icon>
 		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
 		<PackageReleaseNotes>
-			- Update readme and documentation
+			- Improve signalr connection and infinit reconnecting
 		</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<License>MIT</License>

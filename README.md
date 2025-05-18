@@ -9,7 +9,7 @@
 
 ## ✨ Features
 
-- 📡 Broadcasts `IEvent` messages over SignalR with **zero boilerplate**
+- 📡 Broadcasts `INotitifcation` messages over SignalR with **zero boilerplate**
 - 🔁 Seamless integration with `LightMediator.EventBus`
 - ⚙️ Configuration-only setup – no custom handlers needed
 - 🧩 Pluggable design for multi-layered, distributed applications

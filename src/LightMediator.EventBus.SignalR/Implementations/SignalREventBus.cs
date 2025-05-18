@@ -16,7 +16,44 @@ internal class SignalREventBus : ILightMediatorEventBus, IHostedService
         _mediator = mediator;
         _hubConnection = hubConnection;
         _lifetime = lifetime;
-        _logger = logger;
+        _logger = logger; 
+        
+        RegisterConnectionHandlers();
+    }
+
+    private void RegisterConnectionHandlers()
+    {
+        _hubConnection.Closed += async (error) =>
+        {
+            _logger.LogWarning(error, "SignalR connection closed. Attempting to reconnect...");
+
+            while (true)
+            {
+                try
+                {
+                    await _hubConnection.StartAsync();
+                    _logger.LogInformation("SignalR reconnected successfully after disconnect.");
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Reconnection failed. Retrying in 5 seconds...");
+                    await Task.Delay(5000);
+                }
+            }
+        };
+
+        _hubConnection.Reconnecting += error =>
+        {
+            _logger.LogWarning(error, "SignalR connection lost. Reconnecting...");
+            return Task.CompletedTask;
+        };
+
+        _hubConnection.Reconnected += connectionId =>
+        {
+            _logger.LogInformation("SignalR reconnected. ConnectionId: {ConnectionId}", connectionId);
+            return Task.CompletedTask;
+        };
     }
 
     public async Task OnEventRecieved(string notificationMessage, CancellationToken? cancellationToken = null)
@@ -43,6 +80,7 @@ internal class SignalREventBus : ILightMediatorEventBus, IHostedService
         }
     }
 
+
     public async Task PublishAsync(INotification notification)
     {
         try
@@ -68,41 +106,26 @@ internal class SignalREventBus : ILightMediatorEventBus, IHostedService
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        _lifetime.ApplicationStarted.Register(async () =>
+        _lifetime.ApplicationStarted.Register(() =>
         {
-            try
+            _ = Task.Run(async () =>
             {
                 await HandleSignalRMessages(cancellationToken);
 
-                int retries = 0;
-                while (_hubConnection.ConnectionId == null && retries < 5)
+                while (!_hubConnection.State.Equals(HubConnectionState.Connected) && !cancellationToken.IsCancellationRequested)
                 {
                     try
                     {
                         await _hubConnection.StartAsync(cancellationToken);
+                        _logger.LogInformation("SignalR connection established. ConnectionId: {ConnectionId}", _hubConnection.ConnectionId);
                     }
                     catch (Exception ex)
                     {
-                        _logger.LogWarning(ex, "Retrying SignalR connection...");
-                    }
-
-                    if (_hubConnection.ConnectionId == null)
-                    {
-                        retries++;
-                        await Task.Delay(3000, cancellationToken);
+                        _logger.LogWarning(ex, "Failed to connect to SignalR. Retrying in 5 seconds...");
+                        await Task.Delay(5000, cancellationToken);
                     }
                 }
-
-                if (_hubConnection.ConnectionId == null)
-                {
-                    throw new SignalRConnectionException("Failed to establish SignalR connection after retries.");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogCritical(ex, "SignalREventBus failed to start.");
-                throw;
-            }
+            });
         });
 
         return Task.CompletedTask;

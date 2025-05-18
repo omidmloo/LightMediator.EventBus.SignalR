@@ -2,11 +2,12 @@
 
 public class SignalRSettings
 {
+    public string ServerAddress { get; set; } = null!; 
+    public string? AccessToken { get; set; }
     public SignalRSettings()
     {
     }
 
-    public string ServerAddress { get; set; } = null!; 
     public SignalRSettings(string serverAddress)
     {
         ServerAddress = serverAddress; 

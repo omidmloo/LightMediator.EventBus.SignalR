@@ -4,7 +4,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.5.1.6</Version>
+		<Version>0.5.1.7</Version>
 		<Authors>Mahmood Malekloo</Authors>
 		<Description>
 			Signalr messaging service extension for lightmediator event bus
@@ -16,8 +16,7 @@
 		<Icon>icon.png</Icon>
 		<RequireLicenseAcceptance>true</RequireLicenseAcceptance>
 		<PackageReleaseNotes>
-			- Improve signalr connection and infinit reconnecting
-			- correct project urls
+			- fixed type conversion
 		</PackageReleaseNotes>
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<License>MIT</License>
@@ -37,7 +36,7 @@
 		<None Include="..\..\README.md" Pack="true" PackagePath="" Link="README.md" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="LightMediator.EventBus" Version="0.5.1.1" />
+		<PackageReference Include="LightMediator.EventBus" Version="0.5.1.6" />
 		<PackageReference Include="Microsoft.AspNetCore.app" Version="2.2.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Routing" Version="2.3.0" />

@@ -5,20 +5,23 @@ internal class SignalREventBus : ILightMediatorEventBus, IHostedService
     private readonly IMediator _mediator;
     private readonly HubConnection _hubConnection;
     private readonly IHostApplicationLifetime _lifetime;
+    internal readonly LightMediatorOptions _mediatorOptions;
     private readonly ILogger<SignalREventBus> _logger;
 
     public SignalREventBus(
         IMediator mediator,
         HubConnection hubConnection,
         IHostApplicationLifetime lifetime,
-        ILogger<SignalREventBus> logger)
+        ILogger<SignalREventBus> logger,
+        LightMediatorOptions mediatorOptions)
     {
         _mediator = mediator;
         _hubConnection = hubConnection;
         _lifetime = lifetime;
-        _logger = logger; 
-        
+        _logger = logger;
+
         RegisterConnectionHandlers();
+        _mediatorOptions = mediatorOptions;
     }
 
     private void RegisterConnectionHandlers()
@@ -63,11 +66,11 @@ internal class SignalREventBus : ILightMediatorEventBus, IHostedService
             var signalREvent = JsonConvert.DeserializeObject<SignalREvent>(notificationMessage)
                                ?? throw new EventDeserializationException("Failed to deserialize SignalREvent.");
 
-            var type = Type.GetType(signalREvent.TypeName);
-            if (type == null)
-                throw new EventDeserializationException($"Unable to resolve type: {signalREvent.TypeName}");
-
-            var notification = (INotification?)JsonConvert.DeserializeObject(signalREvent.JsonPayload, type);
+            var t = _mediatorOptions.Assemblies.SelectMany(a => a.GetTypes())
+                .FirstOrDefault(t => t.IsClass && !t.IsAbstract && t.Name.EndsWith(signalREvent.TypeName, StringComparison.Ordinal));
+            if (t == null)
+                throw new EventDeserializationException("The type not found in referenced assemblies");
+            var notification = (INotification?)JsonConvert.DeserializeObject(signalREvent.JsonPayload, t); 
             if (notification == null)
                 throw new EventDeserializationException("Failed to deserialize payload to INotification.");
 
@@ -89,7 +92,7 @@ internal class SignalREventBus : ILightMediatorEventBus, IHostedService
                 throw new SignalRConnectionException("SignalR connection not established.");
 
             var eventMessage = new SignalREvent(
-                notification.GetType().AssemblyQualifiedName!,
+                notification.GetType().Name.Split(".").Last(),
                 JsonConvert.SerializeObject(notification)
             );
 

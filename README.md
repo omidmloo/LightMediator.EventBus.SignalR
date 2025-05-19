@@ -113,4 +113,16 @@ Licensed under the [MIT License](LICENSE).
 ## 💬 Contact
 
 For issues or contributions, visit the [GitHub repo](https://github.com/omidmloo/LightMediator.EventBus.SignalR) or contact [@omidmloo](https://github.com/omidmloo).
+---
+
+## 💬 Related Projects
+ 
+* [LightMediator](https://github.com/omidmloo/LightMediator)
+* [LightMediator.EventBus](https://github.com/omidmloo/LightMediator.EventBus) 
+* [LightMediator.EventBus.RabbitMQ](https://github.com/omidmloo/LightMediator.EventBus.RabbitMQ) 
+
+---
+
+> Created with ❤️ by [@omidmloo](https://github.com/omidmloo) 
+
 

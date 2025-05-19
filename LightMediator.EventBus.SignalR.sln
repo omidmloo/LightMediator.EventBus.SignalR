@@ -5,6 +5,14 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightMediator.EventBus.SignalR", "src\LightMediator.EventBus.SignalR\LightMediator.EventBus.SignalR.csproj", "{426F0FCD-A0E3-4935-8E4F-C79426B95691}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{38667B8B-4A4E-4953-8DCE-6E6E1EB71A42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService1", "Examples\WorkerService1\WorkerService1.csproj", "{50C1C5D2-E089-487F-9FF9-9B41B2C97861}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService2", "Examples\WorkerService2\WorkerService2.csproj", "{8249A605-B136-45C2-9CEF-BF578445616C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRServer", "Examples\SignalRServer\SignalRServer.csproj", "{1B0C886E-74AD-476C-98D6-D1959462B0EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +23,25 @@ Global
 		{426F0FCD-A0E3-4935-8E4F-C79426B95691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{426F0FCD-A0E3-4935-8E4F-C79426B95691}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{426F0FCD-A0E3-4935-8E4F-C79426B95691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50C1C5D2-E089-487F-9FF9-9B41B2C97861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50C1C5D2-E089-487F-9FF9-9B41B2C97861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50C1C5D2-E089-487F-9FF9-9B41B2C97861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50C1C5D2-E089-487F-9FF9-9B41B2C97861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8249A605-B136-45C2-9CEF-BF578445616C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8249A605-B136-45C2-9CEF-BF578445616C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8249A605-B136-45C2-9CEF-BF578445616C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8249A605-B136-45C2-9CEF-BF578445616C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0C886E-74AD-476C-98D6-D1959462B0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0C886E-74AD-476C-98D6-D1959462B0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0C886E-74AD-476C-98D6-D1959462B0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0C886E-74AD-476C-98D6-D1959462B0EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{50C1C5D2-E089-487F-9FF9-9B41B2C97861} = {38667B8B-4A4E-4953-8DCE-6E6E1EB71A42}
+		{8249A605-B136-45C2-9CEF-BF578445616C} = {38667B8B-4A4E-4953-8DCE-6E6E1EB71A42}
+		{1B0C886E-74AD-476C-98D6-D1959462B0EA} = {38667B8B-4A4E-4953-8DCE-6E6E1EB71A42}
 	EndGlobalSection
 EndGlobal
